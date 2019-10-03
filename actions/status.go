@@ -26,10 +26,12 @@ import (
 //StatusCommand to show the status
 func StatusCommand(c *cli.Context) {
 	targetDeployment := FindTargetDeployment()
-	if strings.EqualFold(targetDeployment.Name, "local") {
-		StatusCommandLocalDeployment(c)
-	} else {
-		StatusCommandRemoteDeployment(c, targetDeployment)
+	if targetDeployment != nil {
+		if strings.EqualFold(targetDeployment.Name, "local") {
+			StatusCommandLocalDeployment(c)
+		} else {
+			StatusCommandRemoteDeployment(c, targetDeployment)
+		}
 	}
 }
 
